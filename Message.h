@@ -11,12 +11,14 @@ class Message :public User, public GuiTr{
     int wsaError;
     WORD wVersionRequested;
     int port;
-    int senderSocket;
+    long long senderSocket;
 public:
     Message();
     void initialize_wsa();
     void create_socket() override;
     void connect_to_server();
+    void send_receive_data() override;
+    void disconn() override;
 };
 
 

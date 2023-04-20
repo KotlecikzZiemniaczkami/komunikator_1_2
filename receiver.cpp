@@ -26,7 +26,7 @@ void receiver::disconn() {
 void receiver::bind_socket() {
     sockaddr_in receiverbs{}; //here an Ip addres lives
     receiverbs.sin_family = AF_INET;
-    InetPton(AF_INET, "127.0.0.1", &receiverbs.sin_addr);
+    InetPton(AF_INET, "127.0.0.1", &receiverbs.sin_addr);//place for sender's ip
     receiverbs.sin_port = htons(port);
     if (bind(receiverSocket, (SOCKADDR*)&receiverbs, sizeof(receiverbs))==SOCKET_ERROR){
         std::cout << "bind() has a problem" << WSAGetLastError()<< std::endl;

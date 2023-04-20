@@ -11,7 +11,7 @@ class receiver :public User {
     int wsaError;
     WORD wVersionRequested;
     int port;
-    int receiverSocket;
+    long long receiverSocket;
 public:
    receiver();
    void create_socket() override;
