@@ -34,5 +34,20 @@ void Message::create_socket() {
     }
 }
 
+void Message::connect_to_server() {
+    sockaddr_in clientService;
+    clientService.sin_family = AF_INET;
+    InetPton(AF_INET, "127.0.0.1", &clientService.sin_addr);
+    clientService.sin_port = htons(port);
+    if (connect(senderSocket, (SOCKADDR*)&clientService, sizeof(clientService)) == SOCKET_ERROR)
+    {
+        std::cout<<"Client: connect() - Failed to connect " << std::endl;
+        WSACleanup();
+    }
+    else{
+        std::cout << "client connect is ok" << std::endl;
+    }
+}
+
 
 

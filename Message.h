@@ -16,6 +16,7 @@ public:
     Message();
     void initialize_wsa();
     void create_socket() override;
+    void connect_to_server();
 };
 
 
