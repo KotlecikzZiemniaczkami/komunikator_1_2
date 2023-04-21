@@ -15,8 +15,14 @@ void receiver::create_socket(){
     }
 }
 
-void receiver::send_receive_data() {
-
+void receiver::receive_data() {
+    char mess[200] = "";
+    int receive_f = recv(receiverSocket, mess, 200,0);
+    if(receive_f < 0){
+        std::printf("sth have fucked in receive_data: %d \n", WSAGetLastError());
+    }
+    else
+        std::printf("Received message: %s \n", mess);
 }
 
 void receiver::disconn() {

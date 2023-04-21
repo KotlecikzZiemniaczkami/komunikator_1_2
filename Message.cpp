@@ -49,8 +49,16 @@ void Message::connect_to_server() {
     }
 }
 
-void Message::send_receive_data() {
-
+void Message::send_data() {
+    char mess[200];
+    std::printf("What should I send Master? ");
+    std::cin.getline(mess,200);
+    int officialSender = send(senderSocket, mess, 200,0);
+    if (officialSender == SOCKET_ERROR){
+        std::printf("We have a problem with alighting Sir: %d.", WSAGetLastError());
+    }
+    else
+        printf("we have just send %d bytes Sir", officialSender);
 }
 
 void Message::disconn() {

@@ -18,7 +18,7 @@ public:
    void bind_socket(); //static?????
    void listen_on_socket();
    void accept_connection();
-   void send_receive_data() override;
+   void receive_data();
    void disconn() override;
 };
 

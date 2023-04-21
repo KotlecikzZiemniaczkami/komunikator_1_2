@@ -17,7 +17,7 @@ public:
     void initialize_wsa();
     void create_socket() override;
     void connect_to_server();
-    void send_receive_data() override;
+    void send_data();
     void disconn() override;
 };
 
