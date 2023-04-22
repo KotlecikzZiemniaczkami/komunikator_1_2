@@ -53,14 +53,18 @@ void receiver::listen_on_socket() {
 }
 
 void receiver::accept_connection() {
-    SOCKET acceptSocket;
-    acceptSocket = accept(receiverSocket, NULL, NULL);
-    if (acceptSocket == INVALID_SOCKET){
-        std::cout << "accept failed: " << WSAGetLastError() << std::endl;
-        WSACleanup();
+    if(agreement == 1) {
+        int nlen = sizeof(sockaddr);
+        acceptSocket = accept(receiverSocket, NULL, &nlen);
+        if (acceptSocket == INVALID_SOCKET) {
+            std::cout << "accept failed: " << WSAGetLastError() << std::endl;
+            WSACleanup();
+        }
+        else {
+            std::cout << "sssss! I am hunting a bunny!" << std::endl;
+            send(acceptSocket, "Got the connection", 255, 0);
+        }
     }
-    else
-        std::cout << "sssss! I am hunting a bunny!" << std::endl;
 }
 
 receiver::receiver() {
@@ -68,8 +72,9 @@ receiver::receiver() {
     receiverSocket = INVALID_SOCKET;
     wVersionRequested = MAKEWORD(2, 2);
     WSAData wsaData{};
+    agreement = 0;
     wsaError = WSAStartup(wVersionRequested, &wsaData);
-    SOCKET acceptSocket = INVALID_SOCKET;
+    acceptSocket = INVALID_SOCKET;
     if(wsaError != 0){
         std::cout << "The Winsock dll not found!" << std::endl;
     }
@@ -102,9 +107,10 @@ void receiver::selection() {
                 std::cout<< "it is an exception. Get away" << std::endl;
             else if(FD_ISSET(receiverSocket, &fw))
                 std::cout<< "ready to write sth" << std::endl;
-            else if(FD_ISSET(receiverSocket, &fr))
-                std::cout<< "ready to read. Sth new come up" << std::endl;
-
+            else if(FD_ISSET(receiverSocket, &fr)) {
+                std::cout << "ready to read. Sth new come up" << std::endl;
+                agreement = 1;
+            }
             break;
         }
         else {

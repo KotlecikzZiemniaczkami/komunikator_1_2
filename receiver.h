@@ -12,7 +12,8 @@ class receiver :public User {
     WORD wVersionRequested;
     int port;
     long long receiverSocket;
-    SOCKET acceptSocket;
+    int acceptSocket;
+    int agreement;
 public:
    receiver();
    void create_socket() override;
