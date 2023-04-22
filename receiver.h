@@ -12,11 +12,13 @@ class receiver :public User {
     WORD wVersionRequested;
     int port;
     long long receiverSocket;
+    SOCKET acceptSocket;
 public:
    receiver();
    void create_socket() override;
    void bind_socket(); //static?????
    void listen_on_socket();
+   void selection();
    void accept_connection();
    void receive_data();
    void disconn() override;

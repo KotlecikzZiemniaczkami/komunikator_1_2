@@ -4,9 +4,10 @@
 
 #include "receiver.h"
 
+//initialize the socket
 void receiver::create_socket(){
     receiverSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
-    if (receiverSocket == INVALID_SOCKET){
+    if (receiverSocket < 0){ // zmienilem z receiverSocket == INVALID_SOCKET na receiverSocket< 0 22.04 2023 11:14
         std::cout << "socket() has failed: " << WSAGetLastError() << std::endl;
         WSACleanup();
     }
@@ -17,7 +18,7 @@ void receiver::create_socket(){
 
 void receiver::receive_data() {
     char mess[200] = "";
-    int receive_f = recv(receiverSocket, mess, 200,0);
+    int receive_f = recv(acceptSocket, mess, 200,0);
     if(receive_f < 0){
         std::printf("sth have fucked in receive_data: %d \n", WSAGetLastError());
     }
@@ -30,11 +31,12 @@ void receiver::disconn() {
 }
 
 void receiver::bind_socket() {
-    sockaddr_in receiverbs{}; //here an Ip addres lives
+    sockaddr_in receiverbs; //here an Ip addres lives
     receiverbs.sin_family = AF_INET;
-    InetPton(AF_INET, "127.0.0.1", &receiverbs.sin_addr);//place for sender's ip
     receiverbs.sin_port = htons(port);
-    if (bind(receiverSocket, (SOCKADDR*)&receiverbs, sizeof(receiverbs))==SOCKET_ERROR){
+    receiverbs.sin_addr.s_addr = INADDR_ANY;
+    memset(&(receiverbs.sin_zero), 0, 8);
+    if (bind(receiverSocket, (sockaddr*)&receiverbs, sizeof(sockaddr))==SOCKET_ERROR){
         std::cout << "bind() has a problem" << WSAGetLastError()<< std::endl;
         WSACleanup();
     }
@@ -62,11 +64,12 @@ void receiver::accept_connection() {
 }
 
 receiver::receiver() {
-    port = 66666;
+    port = 55555;
     receiverSocket = INVALID_SOCKET;
     wVersionRequested = MAKEWORD(2, 2);
     WSAData wsaData{};
     wsaError = WSAStartup(wVersionRequested, &wsaData);
+    SOCKET acceptSocket = INVALID_SOCKET;
     if(wsaError != 0){
         std::cout << "The Winsock dll not found!" << std::endl;
     }
@@ -74,6 +77,34 @@ receiver::receiver() {
         std::cout << "The Winsock dll found!" << std::endl;
     }
 
+}
+
+void receiver::selection() {
+    int select_helping;
+    long long nMax;
+    timeval tv;
+    tv.tv_sec = 1;
+    tv.tv_usec = 0;
+    fd_set fr, fw, fe;
+    nMax = receiverSocket +1;
+    while(true) {
+        FD_ZERO(&fr);
+        FD_ZERO(&fw);
+        FD_ZERO(&fe);
+        FD_SET(receiverSocket, &fr);
+        FD_SET(receiverSocket, &fe);
+        select_helping = select(nMax, &fr, &fw, &fe, &tv);
+        if (select_helping == 0)
+            std::cout << "nothing on a port" << std::endl;
+        else if (select_helping > 0)
+            std::cout << "here comes communication" << std::endl;
+        else {
+            std::cout << "sth failed in select" << std::endl;
+            exit(EXIT_FAILURE);
+        }
+        std::cout << "After the select call: " << fr.fd_count << std::endl;
+        Sleep(2000);
+    }
 }
 
 /*do poprawy jak wszystko będzie dzialac:

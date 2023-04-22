@@ -5,7 +5,7 @@
 #include "Message.h"
 
 Message::Message() {
-    port = 66666;
+    port = 55555;
     senderSocket = INVALID_SOCKET;
     wVersionRequested = MAKEWORD(2, 2);
     WSAData wsaData{};
@@ -37,8 +37,9 @@ void Message::create_socket() {
 void Message::connect_to_server() {
     sockaddr_in clientService;
     clientService.sin_family = AF_INET;
-    InetPton(AF_INET, "127.0.0.1", &clientService.sin_addr); //place for receiver's ip
     clientService.sin_port = htons(port);
+    clientService.sin_addr.s_addr = inet_addr("192.168.1.13");
+    memset(&clientService.sin_zero, 0, 8);
     if (connect(senderSocket, (SOCKADDR*)&clientService, sizeof(clientService)) == SOCKET_ERROR)
     {
         std::cout<<"Client: connect() - Failed to connect " << std::endl;
@@ -56,6 +57,7 @@ void Message::send_data() {
     int officialSender = send(senderSocket, mess, 200,0);
     if (officialSender == SOCKET_ERROR){
         std::printf("We have a problem with alighting Sir: %d.", WSAGetLastError());
+        WSACleanup();
     }
     else
         printf("we have just send %d bytes Sir", officialSender);
