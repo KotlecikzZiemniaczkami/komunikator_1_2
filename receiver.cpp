@@ -96,8 +96,17 @@ void receiver::selection() {
         select_helping = select(nMax, &fr, &fw, &fe, &tv);
         if (select_helping == 0)
             std::cout << "nothing on a port" << std::endl;
-        else if (select_helping > 0)
+        else if (select_helping > 0) {
             std::cout << "here comes communication" << std::endl;
+            if(FD_ISSET(receiverSocket, &fe))
+                std::cout<< "it is an exception. Get away" << std::endl;
+            else if(FD_ISSET(receiverSocket, &fw))
+                std::cout<< "ready to write sth" << std::endl;
+            else if(FD_ISSET(receiverSocket, &fr))
+                std::cout<< "ready to read. Sth new come up" << std::endl;
+
+            break;
+        }
         else {
             std::cout << "sth failed in select" << std::endl;
             exit(EXIT_FAILURE);
