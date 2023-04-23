@@ -10,10 +10,14 @@
 
 class User {
 protected:
-    //virtual void initialize_wsa() = 0; prubuje to zrobi na zasadzie konstruktora. pruba odbywa się w receiver
-    virtual void create_socket() = 0;
-    virtual void disconn() = 0;
-
+    int wsaError;
+    WORD wVersionRequested;
+    int port;
+    long long userSocket;
+    User();
+public:
+    void initialize_wsa();
+    void create_socket();
 };
 
 
