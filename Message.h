@@ -5,9 +5,8 @@
 #ifndef KOMUNIKATOR_1_2_MESSAGE_H
 #define KOMUNIKATOR_1_2_MESSAGE_H
 #include "User.h"
-#include "GuiTr.h"
 
-class Message :public User, public GuiTr{
+class Message :public User{
 public:
     Message();
     void connect_to_server();
