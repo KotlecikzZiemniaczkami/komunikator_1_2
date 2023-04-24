@@ -12,7 +12,7 @@ class receiver :public User {
     WORD wVersionRequested; //y
     int port; //y
     long long receiverSocket; //y*/
-    int acceptSocket;
+    long long acceptSocket;
     int agreement;
 public:
    receiver();
