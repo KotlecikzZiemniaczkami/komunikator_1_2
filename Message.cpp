@@ -12,7 +12,7 @@ void Message::connect_to_server() {
     sockaddr_in clientService;
     clientService.sin_family = AF_INET;
     clientService.sin_port = htons(port);
-    clientService.sin_addr.s_addr = inet_addr("192.168.1.13");
+    clientService.sin_addr.s_addr = inet_addr("192.168.1.15");
     memset(&clientService.sin_zero, 0, 8);
     if (connect(userSocket, (SOCKADDR*)&clientService, sizeof(clientService)) == SOCKET_ERROR)
     {
@@ -27,6 +27,7 @@ void Message::connect_to_server() {
 void Message::send_data() {
     char mess[200];
     std::printf("What should I send Master? ");
+    fflush(stdin);
     std::cin.getline(mess,200);
     int officialSender = send(userSocket, mess, 200,0);
     if (officialSender == SOCKET_ERROR){

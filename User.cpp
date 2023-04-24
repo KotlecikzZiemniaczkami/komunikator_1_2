@@ -5,7 +5,7 @@
 #include "User.h"
 
 User::User(){
-    port = 55555;
+    port = 66666;
     userSocket = INVALID_SOCKET;
     wVersionRequested = MAKEWORD(2, 2);
     //WSAData wsaData{}; prawdopodobnie niepotrzebne
