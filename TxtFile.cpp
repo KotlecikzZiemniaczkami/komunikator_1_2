@@ -18,4 +18,4 @@ std::string TxtFile::get_ip() {
 
 /* to do
  * dokonczyc metody
- * dodac metode usuwania znajomych
+ * dodac metode usuwania znajomych*/
