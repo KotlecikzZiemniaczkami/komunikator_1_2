@@ -4,18 +4,6 @@
 
 #include "receiver.h"
 
-//initialize the socket
-void receiver::create_socket(){
-    receiverSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
-    if (receiverSocket < 0){ // zmienilem z receiverSocket == INVALID_SOCKET na receiverSocket< 0 22.04 2023 11:14
-        std::cout << "socket() has failed: " << WSAGetLastError() << std::endl;
-        WSACleanup();
-    }
-    else{
-        std::cout << "socket() is cool" << std::endl;
-    }
-}
-
 void receiver::receive_data() {
     char mess[200] = "";
     int receive_f = recv(acceptSocket, mess, 200,0);
@@ -36,7 +24,7 @@ void receiver::bind_socket() {
     receiverbs.sin_port = htons(port);
     receiverbs.sin_addr.s_addr = INADDR_ANY;
     memset(&(receiverbs.sin_zero), 0, 8);
-    if (bind(receiverSocket, (sockaddr*)&receiverbs, sizeof(sockaddr))==SOCKET_ERROR){
+    if (bind(userSocket, (sockaddr*)&receiverbs, sizeof(sockaddr))==SOCKET_ERROR){
         std::cout << "bind() has a problem" << WSAGetLastError()<< std::endl;
         WSACleanup();
     }
@@ -46,7 +34,7 @@ void receiver::bind_socket() {
 }
 
 void receiver::listen_on_socket() {
-    if (listen(receiverSocket, 1) == SOCKET_ERROR)
+    if (listen(userSocket, 1) == SOCKET_ERROR)
         std::cout << "we are deaf. There is a failure on Listen " << WSAGetLastError() << std::endl;
     else
         std::cout << "with listen everything is fine. Let's hunt" << std::endl;
@@ -55,7 +43,7 @@ void receiver::listen_on_socket() {
 void receiver::accept_connection() {
     if(agreement == 1) {
         int nlen = sizeof(sockaddr);
-        acceptSocket = accept(receiverSocket, NULL, &nlen);
+        acceptSocket = accept(userSocket, NULL, &nlen);
         if (acceptSocket == INVALID_SOCKET) {
             std::cout << "accept failed: " << WSAGetLastError() << std::endl;
             WSACleanup();
@@ -67,24 +55,9 @@ void receiver::accept_connection() {
     }
 }
 
-receiver::receiver() {
-    port = 55555;
-    receiverSocket = INVALID_SOCKET;
-    wVersionRequested = MAKEWORD(2, 2);
+receiver::receiver():User() {
     agreement = 0;
     acceptSocket = INVALID_SOCKET;
-}
-
-void receiver::initialize_wsa(){
-    WSAData wsaData{};
-    wsaError = WSAStartup(wVersionRequested, &wsaData);
-    if(wsaError != 0){
-        std::cout << "The Winsock dll not found!" << std::endl;
-    }
-    else{
-        std::cout << "The Winsock dll found!" << std::endl;
-    }
-
 }
 
 void receiver::selection() {
@@ -94,23 +67,23 @@ void receiver::selection() {
     tv.tv_sec = 1;
     tv.tv_usec = 0;
     fd_set fr, fw, fe;
-    nMax = receiverSocket +1;
+    nMax = userSocket +1;
     while(true) {
         FD_ZERO(&fr);
         FD_ZERO(&fw);
         FD_ZERO(&fe);
-        FD_SET(receiverSocket, &fr);
-        FD_SET(receiverSocket, &fe);
+        FD_SET(userSocket, &fr);
+        FD_SET(userSocket, &fe);
         select_helping = select(nMax, &fr, &fw, &fe, &tv);
         if (select_helping == 0)
             std::cout << "nothing on a port" << std::endl;
         else if (select_helping > 0) {
             std::cout << "here comes communication" << std::endl;
-            if(FD_ISSET(receiverSocket, &fe))
+            if(FD_ISSET(userSocket, &fe))
                 std::cout<< "it is an exception. Get away" << std::endl;
-            else if(FD_ISSET(receiverSocket, &fw))
+            else if(FD_ISSET(userSocket, &fw))
                 std::cout<< "ready to write sth" << std::endl;
-            else if(FD_ISSET(receiverSocket, &fr)) {
+            else if(FD_ISSET(userSocket, &fr)) {
                 std::cout << "ready to read. Sth new come up" << std::endl;
                 agreement = 1;
             }
