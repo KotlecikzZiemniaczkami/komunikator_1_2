@@ -10,14 +10,10 @@
 
 class User {
 protected:
-    int wsaError;
-    WORD wVersionRequested;
-    int port;
-    long long userSocket;
-    User();
-public:
-    void initialize_wsa();
-    void create_socket();
+    virtual void initialize_wsa() = 0;
+    virtual void create_socket() = 0;
+    virtual void disconn() = 0;
+
 };
 
 

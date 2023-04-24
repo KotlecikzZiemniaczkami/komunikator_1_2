@@ -8,20 +8,22 @@
 #include <string>
 
 class receiver :public User {
-    /*int wsaError; //y
-    WORD wVersionRequested; //y
-    int port; //y
-    long long receiverSocket; //y*/
-    long long acceptSocket;
+    int wsaError;
+    WORD wVersionRequested;
+    int port;
+    long long receiverSocket;
+    int acceptSocket;
     int agreement;
 public:
    receiver();
+   void initialize_wsa() override;
+   void create_socket() override;
    void bind_socket(); //static?????
    void listen_on_socket();
    void selection();
    void accept_connection();
    void receive_data();
-   void disconn();
+   void disconn() override;
 };
 
 
