@@ -5,14 +5,19 @@
 #ifndef KOMUNIKATOR_1_2_TXTFILE_H
 #define KOMUNIKATOR_1_2_TXTFILE_H
 #include <fstream>
+#include <vector>
+#include <iostream>
+#include <string>
 
 class TxtFile {
-    std::fstream file;
     std::string ip;
     std::string nick;
 protected:
-    std::string get_ip();
-    void add_data(std::string nick, std::string ip); //is adding a user
+    TxtFile(std::string &i, std::string &n); //just a constructor
+    void get_ip();//is getting an ip based on a nick
+    void add_data(); //is adding a user
+    void all_content(); //is showing all nicks from file
+    void delete_data(); //is deleting an ip and a nick from base
 };
 
 
