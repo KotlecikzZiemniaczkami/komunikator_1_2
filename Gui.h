@@ -6,8 +6,12 @@
 #define KOMUNIKATOR_1_2_GUI_H
 #include "TxtFile.h"
 
-class Gui: public TxtFile{
-
+class Gui:public TxtFile{
+public:
+    Gui(std::string &i, std::string &n);
+    void add_user();
+    void show_friends();
+    void delete_friend();
 };
 
 

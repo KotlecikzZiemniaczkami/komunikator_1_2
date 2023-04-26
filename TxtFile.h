@@ -10,14 +10,14 @@
 #include <string>
 
 class TxtFile {
+protected:
     std::string ip;
     std::string nick;
-protected:
     TxtFile(std::string &i, std::string &n); //just a constructor
     void get_ip();//is getting an ip based on a nick
-    void add_data(); //is adding a user
-    void all_content(); //is showing all nicks from file
-    void delete_data(); //is deleting an ip and a nick from base
+    virtual void add_data(); //is adding a user
+    virtual void all_content(); //is showing all nicks from file
+    virtual void delete_data(); //is deleting an ip and a nick from base
 };
 
 
