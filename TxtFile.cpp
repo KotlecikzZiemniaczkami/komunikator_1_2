@@ -69,14 +69,17 @@ void TxtFile::delete_data() {
 //is showing nicks
 void TxtFile::all_content() {
     int i = 0;
+    int num = 1;
     std::string word;
     std::fstream file;
     file.open("base.txt", std::ios::in);
     if(!file.good())
         return;
     while(getline(file, word)){
-        if(i%2 == 0)
-            std::cout << word << std::endl;
+        if(i%2 == 0) {
+            std::cout << num << '.' << word << std::endl;
+            num += 1;
+        }
     }
     file.close();
 }
