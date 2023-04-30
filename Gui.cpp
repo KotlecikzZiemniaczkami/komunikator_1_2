@@ -16,35 +16,63 @@ int Gui::guard() {
     return 0;
 }
 
+//gets an ip number  and nick
+void Gui::getting_ip_and_nick_from_user(){
+    if (control == 0) {
+        std::cout << "please, write nick here: " << std::endl;
+        std::cin >> nick;
+        std::cout << "please, write ip here: " << std::endl;
+        std::cin >> ip;
+    }
+    else if(control == 1){
+        std::cout << "please, write nick here: " << std::endl;
+        std::cin >> nick;
+    }
+    else{
+        std::cout << "please, write ip here: " << std::endl;
+        std::cin >> ip;
+    }
+}
+
+
 //is adding a user
 void Gui::add_user() {
+    control = 0;
     std::cout << "So it is time to add a friend :D" << std::endl;
-    std::cout << "please, write here Your friend's nick: ";
-    std::cin >> nick;
-    std::cout << "please, write here Your friend's ip: ";
-    std::cin >> ip;
+    getting_ip_and_nick_from_user();
     if(!guard()){
         std::cout << "incorrect ip. I will return to menu." << std::endl;
         return;
     }
     add_data();
+    clearing();
 }
 
+//is showing list of friends
 void Gui::show_friends() {
-    int just_to_close;
     std::cout << "This is the list of all Your friends\nwho are in my system:" << std::endl;
     all_content();
     std::cout << "press any button to continue" << std::endl;
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // To do: zrobić z tego funkckcje zaprzyjaźnioną
-    just_to_close = _getwch();
-    std::system("clear");
-
+    clearing();
 }
 
 void Gui::delete_friend() {
-
+    int if_found;
+    std::cout << "This is the list of all Your friends\nwho are in my system:" << std::endl;
+    all_content();
+    control = 1;
+    std::cout << "who do You want delete?" << std::endl;
+    getting_ip_and_nick_from_user();
+    get_ip();
+    if(!guard()) {
+        std::cout << "WRONG IP NUMBER" << std::endl;
+        clearing();
+        return;
+    }
+    delete_friend();
+    clearing();
 }
+
 
 
 /*to do

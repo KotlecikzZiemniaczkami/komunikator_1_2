@@ -1,7 +1,17 @@
 #include "Message.h"
 #include "receiver.h"
+#include <cstdlib>
+#include "Gui.h"
 
 using namespace std;
+
+//to wait till user press any button and then clear all screan
+void clearing(){
+    int just_to_close;
+    just_to_close = _getwch();
+    std::system("clear");
+}
+
 
 void sending(){
     Message user;
@@ -27,11 +37,16 @@ void receiving(){
 int main() {
     int choice;
     cout << "HELLO IN FUTURISTIC COMUNICATOR 1.2 :D" << endl;
-    cout << "If You wanna send sth select 1\nIf You wanna wait until somebody communicates with You select 2" << endl;
-    cout << "enter Your choice: ";
-    cin >> choice;
-    if(choice == 1)
-        sending();
-    else if(choice == 2)
-        receiving();
+    //naprawic czyszczenie////////////////////////////////////////////////////////////////////////////////////////
+    while(true){
+        std::string jeden = "";
+        std::string dwa = "";
+        Gui jed(jeden,dwa);
+        jed.show_friends();
+        jed.add_user();
+        jed.show_friends();
+        jed.delete_friend();
+        jed.show_friends();
+
+    }
 }

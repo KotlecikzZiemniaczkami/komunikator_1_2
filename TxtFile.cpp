@@ -47,14 +47,16 @@ TxtFile::TxtFile(std::string &i, std::string &n) {
 
 //delating user from the base
 void TxtFile::delete_data() {
+    int if_found = 0;
     std::vector<std::string> file_content;
     std::string word;
     std::fstream file;
     //file opening and copying data except those which user wants to delete
     file.open("base.txt", std::ios::in);
     while (std::getline(file, word)) {
-        if(word == nick or word == ip)
+        if(word == nick or word == ip) {
             continue;
+        }
         file_content.push_back(word);
     }
     file.close();
