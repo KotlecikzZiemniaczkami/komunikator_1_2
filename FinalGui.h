@@ -4,9 +4,14 @@
 
 #ifndef KOMUNIKATOR_1_2_FINALGUI_H
 #define KOMUNIKATOR_1_2_FINALGUI_H
+#include "Gui.h"
+#include "Message.h"
+#include "receiver.h"
 
 //to co ma user: dzialajace menu, lacnosc etc
-class FinalGui {
+//to do: dokonczyc ta klase i dokonczyc main
+class FinalGui:public Gui, public  {
+public:
 
 };
 

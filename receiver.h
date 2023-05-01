@@ -8,10 +8,6 @@
 #include <string>
 
 class receiver :public User {
-    /*int wsaError; //y
-    WORD wVersionRequested; //y
-    int port; //y
-    long long receiverSocket; //y*/
     long long acceptSocket;
     int agreement;
 public:
