@@ -24,16 +24,19 @@ void TxtFile::get_ip() {
 
     //checking if file has opened correctly
     if(!file.good()){
+        std::cout << "THERE IS A PROBLEM WITH TXT FILE" <<std::endl;
         return;
     }
 
     //searching for an ip basing on nick
     while (std::getline(file, word)) {
         if(hit == 1) {
+            std::cout<< "ip found " << std::endl;
             ip = word;
             break;
         }
         if(word == nick)
+            std::cout<< "user found " << std::endl;
             hit = 1;
     }
     file.close();
@@ -48,16 +51,20 @@ TxtFile::TxtFile(std::string &i, std::string &n) {
 //delating user from the base
 void TxtFile::delete_data() {
     int if_found = 0;
+    std::cout << "Im in file"<< std::endl;
     std::vector<std::string> file_content;
     std::string word;
     std::fstream file;
+    std::cout << "I want to delete: " << nick << ip << std::endl;
     //file opening and copying data except those which user wants to delete
     file.open("base.txt", std::ios::in);
     while (std::getline(file, word)) {
         if(word == nick or word == ip) {
-            continue;
+           continue;
         }
+        std::cout<< "push: " << word <<std::endl;
         file_content.push_back(word);
+
     }
     file.close();
     //replacing old txt file with new one without unwanted data
@@ -82,6 +89,7 @@ void TxtFile::all_content() {
             std::cout << num << '.' << word << std::endl;
             num += 1;
         }
+        i += 1;
     }
     file.close();
 }

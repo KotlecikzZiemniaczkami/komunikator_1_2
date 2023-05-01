@@ -12,11 +12,8 @@ protected:
     void clearing(){
         int just_to_close;
         std::cout << "*PRESS ANY BUTTON*" << std::endl;
-        std::cout<< "we are before before"<<std::endl;
         just_to_close = _getwch();
-        std::cout<< "we are before"<<std::endl;
         system("cls");
-        std::cout<< "we are after"<<std::endl;
     }
 };
 

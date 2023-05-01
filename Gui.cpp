@@ -8,8 +8,9 @@
 Gui::Gui(std::string &i, std::string &n) : TxtFile(i, n) {
 }
 
+//is checking if ip number is correct
 int Gui::guard() {
-    std::regex ip_pattern(R"(\d+.\d+.\d)");
+    std::regex ip_pattern(R"(\d+.\d+.\d+.\d+)");
     if(std::regex_match(ip, ip_pattern)){
         return 1;
     }
@@ -42,6 +43,7 @@ void Gui::add_user() {
     getting_ip_and_nick_from_user();
     if(!guard()){
         std::cout << "incorrect ip. I will return to menu." << std::endl;
+        clearing();
         return;
     }
     add_data();
@@ -62,14 +64,14 @@ void Gui::delete_friend() {
     all_content();
     control = 1;
     std::cout << "who do You want delete?" << std::endl;
+    std::cout << "phase 1" << std::endl;
     getting_ip_and_nick_from_user();
+    std::cout << "phase 2" << std::endl;
     get_ip();
-    if(!guard()) {
-        std::cout << "WRONG IP NUMBER" << std::endl;
-        clearing();
-        return;
-    }
-    delete_friend();
+    std::cout << "phase 3" << std::endl;
+    std::cout << "phase 4" << std::endl;
+    delete_data();
+    std::cout << "phase 5" << std::endl;
     clearing();
 }
 

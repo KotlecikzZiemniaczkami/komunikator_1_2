@@ -37,13 +37,10 @@ void receiving(){
 int main() {
     int choice;
     cout << "HELLO IN FUTURISTIC COMUNICATOR 1.2 :D" << endl;
-    //naprawic czyszczenie////////////////////////////////////////////////////////////////////////////////////////
     while(true){
         std::string jeden = "";
         std::string dwa = "";
         Gui jed(jeden,dwa);
-        jed.show_friends();
-        jed.add_user();
         jed.show_friends();
         jed.delete_friend();
         jed.show_friends();
