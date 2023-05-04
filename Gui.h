@@ -7,16 +7,19 @@
 #include "TxtFile.h"
 #include <regex>
 #include "just_clearing.h"
+#include "Message.h"
 
-class Gui:public TxtFile, public just_clearing{
+class Gui:protected TxtFile, public just_clearing, public Message{
     int control;
     void getting_ip_and_nick_from_user(); //is getting an ip and nick from user
     int guard(); //exist only to test if ip is correct
 protected:
-    Gui(std::string &i, std::string &n);
     void add_user(); //is adding user being polite to user
-    void show_friends();
-    void delete_friend();
+    void show_friends();// is showing list of all friends
+    void delete_friend();//is deleting some frined
+public:
+    Gui();
+    void making_con();
 };
 
 

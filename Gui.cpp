@@ -5,7 +5,8 @@
 #include "Gui.h"
 
 //just a constructor
-Gui::Gui(std::string &i, std::string &n) : TxtFile(i, n) {
+Gui::Gui() : TxtFile() {
+    control = 0;
 }
 
 //is checking if ip number is correct
@@ -47,7 +48,6 @@ void Gui::add_user() {
         return;
     }
     add_data();
-    clearing();
 }
 
 //is showing list of friends
@@ -55,7 +55,6 @@ void Gui::show_friends() {
     std::cout << "This is the list of all Your friends\nwho are in my system:" << std::endl;
     all_content();
     std::cout << "press any button to continue" << std::endl;
-    clearing();
 }
 
 void Gui::delete_friend() {
@@ -72,7 +71,14 @@ void Gui::delete_friend() {
     std::cout << "phase 4" << std::endl;
     delete_data();
     std::cout << "phase 5" << std::endl;
-    clearing();
+}
+
+//helping with connecting by giving an ip to the Message's function
+void Gui::making_con() {
+    control = 1;
+    show_friends();
+    getting_ip_and_nick_from_user();
+    connect_to_server((char &) ip); //reinterpret_cast<char &>(p_ip)
 }
 
 

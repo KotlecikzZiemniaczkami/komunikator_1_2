@@ -8,11 +8,11 @@ Message::Message():User() {
 }
 
 
-void Message::connect_to_server() {
+void Message::connect_to_server(char &ip) {
     sockaddr_in clientService;
     clientService.sin_family = AF_INET;
     clientService.sin_port = htons(port);
-    clientService.sin_addr.s_addr = inet_addr("192.168.1.15");
+    clientService.sin_addr.s_addr = inet_addr(&ip);
     memset(&clientService.sin_zero, 0, 8);
     if (connect(userSocket, (SOCKADDR*)&clientService, sizeof(clientService)) == SOCKET_ERROR)
     {

@@ -9,7 +9,7 @@
 class Message :public User{
 public:
     Message();
-    void connect_to_server();
+    void connect_to_server(char &ip);
     void send_data();
 };
 

@@ -43,9 +43,9 @@ void TxtFile::get_ip() {
 }
 
 //just a constructor
-TxtFile::TxtFile(std::string &i, std::string &n) {
-    ip = i;
-    nick = n;
+TxtFile::TxtFile() {
+    ip = "";
+    nick = "";
 }
 
 //delating user from the base

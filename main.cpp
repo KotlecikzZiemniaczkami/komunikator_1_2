@@ -1,7 +1,7 @@
 #include "Message.h"
 #include "receiver.h"
 #include <cstdlib>
-#include "Gui.h"
+#include "FinalGui.h"
 
 using namespace std;
 
@@ -12,30 +12,11 @@ void clearing(){
     std::system("clear");
 }
 
-
-void sending(){
-    Message user;
-    user.initialize_wsa();
-    user.create_socket();
-    user.connect_to_server();
-    user.send_data();
-    WSACleanup();
-}
-
-void receiving(){
-    receiver user;
-    user.initialize_wsa();
-    user.create_socket();
-    user.bind_socket();
-    user.listen_on_socket();
-    user.selection();
-    user.accept_connection();
-    user.receive_data();
-    WSACleanup();
-}
-
 int main() {
-    int choice;
+    FinalGui start;
     cout << "HELLO IN FUTURISTIC COMUNICATOR 1.2 :D" << endl;
+    while (true) {
+        start.menu();
+    }
     return 0;
 }

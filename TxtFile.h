@@ -13,7 +13,7 @@ class TxtFile {
 protected:
     std::string ip;
     std::string nick;
-    TxtFile(std::string &i, std::string &n); //just a constructor
+    TxtFile(); //just a constructor
     void get_ip();//is getting an ip based on a nick
     void add_data(); //is adding a user
     void all_content(); //is showing all nicks from file
