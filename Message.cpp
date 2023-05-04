@@ -7,7 +7,7 @@
 Message::Message():User() {
 }
 
-
+//?
 void Message::connect_to_server(char& ip) {
     sockaddr_in clientService;
     std::cout<<"Im in: " << &ip<<std::endl;
