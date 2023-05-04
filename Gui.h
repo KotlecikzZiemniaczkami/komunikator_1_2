@@ -7,9 +7,9 @@
 #include "TxtFile.h"
 #include <regex>
 #include "just_clearing.h"
-#include "Message.h"
 
-class Gui:protected TxtFile, public just_clearing, public Message{
+
+class Gui:protected TxtFile, public just_clearing{ //public Message
     int control;
     void getting_ip_and_nick_from_user(); //is getting an ip and nick from user
     int guard(); //exist only to test if ip is correct
@@ -19,7 +19,7 @@ protected:
     void delete_friend();//is deleting some frined
 public:
     Gui();
-    void making_con();
+    //void making_con();
 };
 
 

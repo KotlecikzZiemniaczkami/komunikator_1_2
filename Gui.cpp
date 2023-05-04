@@ -22,8 +22,10 @@ int Gui::guard() {
 void Gui::getting_ip_and_nick_from_user(){
     if (control == 0) {
         std::cout << "please, write nick here: " << std::endl;
+        fflush(stdin);
         std::cin >> nick;
         std::cout << "please, write ip here: " << std::endl;
+        fflush(stdin);
         std::cin >> ip;
     }
     else if(control == 1){
@@ -73,14 +75,23 @@ void Gui::delete_friend() {
     std::cout << "phase 5" << std::endl;
 }
 
+
+/*
 //helping with connecting by giving an ip to the Message's function
 void Gui::making_con() {
     control = 1;
+    std::cout<<ip<<std::endl;
+    char* ipt = "";
+    for (int i = 0; i < ip.size(); i++)
+        ipt += ip[i];
     show_friends();
     getting_ip_and_nick_from_user();
-    connect_to_server((char &) ip); //reinterpret_cast<char &>(p_ip)
+    get_ip();
+    std::cout<<ip<<std::endl;
+    std::cout<<(char&) ipt <<std::endl;
+    connect_to_server((char &) ipt); //reinterpret_cast<char &>(p_ip)
 }
-
+*/
 
 
 /*to do

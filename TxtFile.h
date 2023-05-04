@@ -8,8 +8,10 @@
 #include <vector>
 #include <iostream>
 #include <string>
+#include "Message.h"
 
-class TxtFile {
+
+class TxtFile:public Message {
 protected:
     std::string ip;
     std::string nick;
@@ -18,6 +20,8 @@ protected:
     void add_data(); //is adding a user
     void all_content(); //is showing all nicks from file
     void delete_data(); //is deleting an ip and a nick from base
+    void making_con();
+    void send();
 };
 
 

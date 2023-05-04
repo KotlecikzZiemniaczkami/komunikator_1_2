@@ -8,11 +8,13 @@ Message::Message():User() {
 }
 
 
-void Message::connect_to_server(char &ip) {
+void Message::connect_to_server(char& ip) {
     sockaddr_in clientService;
+    std::cout<<"Im in: " << &ip<<std::endl;
     clientService.sin_family = AF_INET;
     clientService.sin_port = htons(port);
     clientService.sin_addr.s_addr = inet_addr(&ip);
+    std::cout << "Im still in" << std::endl;
     memset(&clientService.sin_zero, 0, 8);
     if (connect(userSocket, (SOCKADDR*)&clientService, sizeof(clientService)) == SOCKET_ERROR)
     {

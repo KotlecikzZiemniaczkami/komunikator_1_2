@@ -5,7 +5,7 @@
 #include "FinalGui.h"
 
 ///////////////////////////////////////////////!RISK!///////////////////////////////////////////////////////////////////////////////////////
-void FinalGui::send() {
+/*void FinalGui::send() {
     Gui sending;
     sending.initialize_wsa();
     sending.create_socket();
@@ -13,6 +13,7 @@ void FinalGui::send() {
     sending.send_data();
     WSACleanup();
 }
+ */
 
 void FinalGui::wait_and_receive() {
     receiver user;
@@ -32,6 +33,7 @@ void FinalGui::menu() {
     choice = _getwch();
     switch(choice){
         case 49:
+            show_friends();
             send();
             break;
         case 50:
