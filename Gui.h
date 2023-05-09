@@ -19,7 +19,6 @@ protected:
     void delete_friend();//is deleting some frined
 public:
     Gui();
-    //void making_con();
 };
 
 

@@ -17,10 +17,6 @@ void receiver::receive_data() {
         std::printf("Received message: %s \n", mess);
 }
 
-//disconnecting
-void receiver::disconn() {
-    WSACleanup();
-}
 
 //this method is responsible for "binding" a socket
 void receiver::bind_socket() {

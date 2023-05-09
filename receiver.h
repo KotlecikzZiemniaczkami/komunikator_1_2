@@ -17,7 +17,6 @@ public:
    void selection();
    void accept_connection();
    void receive_data();
-   void disconn();
 };
 
 

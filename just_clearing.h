@@ -9,7 +9,7 @@
 
 class just_clearing {
 protected:
-    void clearing(){
+    static void clearing(){
         int just_to_close;
         std::cout << "*PRESS ANY BUTTON*" << std::endl;
         just_to_close = _getwch();

@@ -7,7 +7,7 @@
 #include "User.h"
 
 class Message :public User{
-public:
+protected:
     Message();
     void connect_to_server(char &ip);
     void send_data();

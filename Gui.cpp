@@ -65,39 +65,8 @@ void Gui::delete_friend() {
     all_content();
     control = 1;
     std::cout << "who do You want delete?" << std::endl;
-    std::cout << "phase 1" << std::endl;
     getting_ip_and_nick_from_user();
-    std::cout << "phase 2" << std::endl;
     get_ip();
-    std::cout << "phase 3" << std::endl;
-    std::cout << "phase 4" << std::endl;
     delete_data();
-    std::cout << "phase 5" << std::endl;
 }
 
-
-/*
-//helping with connecting by giving an ip to the Message's function
-void Gui::making_con() {
-    control = 1;
-    std::cout<<ip<<std::endl;
-    char* ipt = "";
-    for (int i = 0; i < ip.size(); i++)
-        ipt += ip[i];
-    show_friends();
-    getting_ip_and_nick_from_user();
-    get_ip();
-    std::cout<<ip<<std::endl;
-    std::cout<<(char&) ipt <<std::endl;
-    connect_to_server((char &) ipt); //reinterpret_cast<char &>(p_ip)
-}
-*/
-
-
-/*to do
- * dokonczyc pisanie metod tej klasy
- * ogarnac w koncu main
- *
- * zrobic cale gui z menu etc. wybor wczytywac tak jak on bezposrednio za pomoca tamtej dziwnej komendy
- * z lapki wczytywac tylko to, co trzeba
-*/
