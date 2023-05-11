@@ -14,7 +14,7 @@
     WSACleanup();
 }
  */
-
+//
 void FinalGui::wait_and_receive() {
     receiver user;
     user.initialize_wsa();
