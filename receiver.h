@@ -17,6 +17,8 @@ public:
    void selection();
    void accept_connection();
    void receive_data();
+/*public:
+   void wait_and_receive();*/
 };
 
 

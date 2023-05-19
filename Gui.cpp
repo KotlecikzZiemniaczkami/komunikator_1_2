@@ -9,6 +9,13 @@ Gui::Gui() : TxtFile() {
     control = 0;
 }
 
+void Gui::clearing() {
+    int just_to_close;
+    std::cout << "*PRESS ANY BUTTON*" << std::endl;
+    just_to_close = _getwch();
+    system("cls");
+}
+
 //is checking if ip number is correct
 int Gui::guard() {
     std::regex ip_pattern(R"(\d+.\d+.\d+.\d+)");
@@ -69,4 +76,17 @@ void Gui::delete_friend() {
     get_ip();
     delete_data();
 }
+
+void Gui::wait_and_receive() {
+    receiver rec1;
+    rec1.initialize_wsa();
+    rec1.create_socket();
+    rec1.bind_socket();
+    rec1.listen_on_socket();
+    rec1.selection();
+    rec1.accept_connection();
+    rec1.receive_data();
+    WSACleanup();
+}
+
 

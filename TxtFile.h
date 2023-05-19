@@ -16,6 +16,7 @@ protected:
     std::string ip;
     std::string nick;
     TxtFile(); //just a constructor
+public:
     void get_ip();//is getting an ip based on a nick
     void add_data(); //is adding a user
     void all_content(); //is showing all nicks from file

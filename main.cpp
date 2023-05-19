@@ -1,22 +1,36 @@
-#include "Message.h"
-#include "receiver.h"
-#include <cstdlib>
-#include "FinalGui.h"
+
+#include "Gui.h"
 
 using namespace std;
 
-//to wait till user press any button and then clear all screan
-void clearing(){
-    int just_to_close;
-    just_to_close = _getwch();
-    std::system("clear");
-}
-
 int main() {
-    FinalGui start;
+    Gui start;
     cout << "HELLO IN FUTURISTIC COMUNICATOR 1.2 :D" << endl;
     while (true) {
-        start.menu();
+        int choice;
+        std::cout << "MENU\n1.Send Message\n2.Wait for the Message\n3.See a list of Your friends\n4.Add a friend\n5.Delete a friend\n6.Quit" << std::endl;
+        choice = _getwch();
+        switch(choice){
+            case 49:
+                start.show_friends();
+                start.send();
+                break;
+            case 50:
+                start.wait_and_receive();
+                break;
+            case 51:
+                start.show_friends();
+                break;
+            case 52:
+                start.add_user();
+                break;
+            case 53:
+                start.delete_friend();
+                break;
+            case 54:
+                std::abort();
+        }
+        start.clearing();
     }
     return 0;
 }

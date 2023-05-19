@@ -105,3 +105,14 @@ void receiver::selection() {
         Sleep(2000);
     }
 }
+
+/*void receiver::wait_and_receive() {
+        initialize_wsa();
+        create_socket();
+        bind_socket();
+        listen_on_socket();
+        selection();
+        accept_connection();
+        receive_data();
+        WSACleanup();
+}*/

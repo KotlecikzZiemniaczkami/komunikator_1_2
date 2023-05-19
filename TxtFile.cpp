@@ -102,8 +102,6 @@ void TxtFile::making_con() {
     char fake_ip[ip.length()+1];
     strcpy(fake_ip, ip.c_str());
     std::cout<<ip<<std::endl;
-
-    std::cout<<"look at me2" << fake_ip<<std::endl;
     connect_to_server(*fake_ip); //reinterpret_cast<char &>(p_ip)
 }
 
