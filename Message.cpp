@@ -40,6 +40,24 @@ void Message::send_data() {
         printf("we have just send %d bytes Sir", officialSender);
 }
 
+void Message::making_con() {
+    std::cout << "podaj nick: ";
+    std::cin >> person.nick;
+    person.get_ip();
+    char fake_ip[person.ip.length()+1];
+    strcpy(fake_ip, person.ip.c_str());
+    std::cout<<person.ip<<std::endl;
+    connect_to_server(*fake_ip); //reinterpret_cast<char &>(p_ip)
+}
+
+void Message::tsend() {
+    initialize_wsa();
+    create_socket();
+    making_con();
+    send_data();
+    WSACleanup();
+}
+
 
 
 

@@ -1,10 +1,11 @@
-
 #include "Gui.h"
+#include "cypher.h"
+#include "cesar.h"
 
 using namespace std;
 
 int main() {
-    Gui start;
+    /*Gui start;
     cout << "HELLO IN FUTURISTIC COMUNICATOR 1.2 :D" << endl;
     while (true) {
         int choice;
@@ -32,5 +33,14 @@ int main() {
         }
         start.clearing();
     }
-    return 0;
+    return 0;*/
+    cypher *base = new cesar(2);
+    char messa[200];
+    cin.getline(messa, 200);
+    base->encryption(messa);
+    cout << messa << endl;
+    base->decryption(messa);
+    cout << messa << endl;
+    char s;
+    cin>>s;
 }

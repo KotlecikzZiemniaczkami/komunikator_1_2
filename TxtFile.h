@@ -8,21 +8,17 @@
 #include <vector>
 #include <iostream>
 #include <string>
-#include "Message.h"
 
 
-class TxtFile:public Message {
-protected:
+class TxtFile {
+public:
     std::string ip;
     std::string nick;
     TxtFile(); //just a constructor
-public:
     void get_ip();//is getting an ip based on a nick
     void add_data(); //is adding a user
     void all_content(); //is showing all nicks from file
     void delete_data(); //is deleting an ip and a nick from base
-    void making_con();
-    void send();
 };
 
 

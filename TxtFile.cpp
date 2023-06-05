@@ -94,22 +94,3 @@ void TxtFile::all_content() {
     file.close();
 }
 
-//helping with connecting by giving an ip to the Message's function
-void TxtFile::making_con() {
-    std::cout << "podaj nick: ";
-    std::cin >> nick;
-    get_ip();
-    char fake_ip[ip.length()+1];
-    strcpy(fake_ip, ip.c_str());
-    std::cout<<ip<<std::endl;
-    connect_to_server(*fake_ip); //reinterpret_cast<char &>(p_ip)
-}
-
-void TxtFile::send() {
-    initialize_wsa();
-    create_socket();
-    making_con();
-    send_data();
-    WSACleanup();
-}
-

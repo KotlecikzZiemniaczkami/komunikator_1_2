@@ -7,11 +7,9 @@
 #include <string>
 
 class cypher {
-protected:
-    int key;
-    std::string word;
-    virtual void encryption() = 0;
-    virtual void decryption() = 0;
+public:
+    virtual void encryption(char mess[200]) = 0;
+    virtual void decryption(char mess[200]) = 0;
 
 };
 

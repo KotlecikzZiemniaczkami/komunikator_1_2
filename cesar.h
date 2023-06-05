@@ -7,8 +7,11 @@
 #include "cypher.h"
 
 class cesar: public cypher {
-    void encryption();
-    void decryption();
+    int key;
+public:
+    cesar(int k);
+    void encryption(char mess[200]);
+    void decryption(char mess[200]);
 };
 
 

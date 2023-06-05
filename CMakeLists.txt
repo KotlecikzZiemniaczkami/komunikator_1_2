@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.24)
 project(komunikator_1_2)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 
 link_libraries(ws2_32 wsock32)
 
