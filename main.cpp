@@ -1,6 +1,6 @@
 #include "Gui.h"
 #include "cypher.h"
-#include "cesar.h"
+#include "Visionera.h"
 
 using namespace std;
 
@@ -34,7 +34,7 @@ int main() {
         start.clearing();
     }
     return 0;*/
-    cypher *base = new cesar(2);
+    cypher *base = new Visionera("klu");
     char messa[200];
     cin.getline(messa, 200);
     base->encryption(messa);
