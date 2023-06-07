@@ -28,9 +28,30 @@ void Message::connect_to_server(char& ip) {
 
 void Message::send_data() {
     char mess[200];
-    std::printf("What should I send Master? ");
+    char enc;
+    std::printf("What should I send Master (max 200 marks)? ");
     fflush(stdin);
     std::cin.getline(mess,200);
+    std::printf("how should I encrypt it Master? 1/2 ");
+    fflush(stdin);
+    std::cin >> enc;
+
+    if(enc == '1') {///////////////////////////////////////////////////////////////////////////////////////////
+        cypher *base = new cesar(3);
+        base->encryption(mess);
+    }
+    else {
+        cypher *base = new Visionera("klucz");
+        base->encryption(mess);
+    }
+
+    int i = 0;
+    while (mess[i] !='\0')
+        i += 1;
+    mess[i + 1] = '\0';
+    mess[i] = enc;
+
+
     int officialSender = send(userSocket, mess, 200,0);
     if (officialSender == SOCKET_ERROR){
         std::printf("We have a problem with alighting Sir: %d.", WSAGetLastError());

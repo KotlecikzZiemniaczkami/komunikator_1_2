@@ -10,6 +10,23 @@ void receiver::receive_data() {
     char mess[200] = "";
     //receiving and saving data through socket
     int receive_f = recv(acceptSocket, mess, 200,0);
+    if(receive_f >= 0){/////////////////////////////////////////////////////////////////////////important
+        char enc;
+        int i = 0;
+        while (mess[i] !='\0')
+            i += 1;
+        mess[i-1] = enc;
+        if(enc == '1') {
+            cypher *base = new cesar(3);
+            base->decryption(mess);
+        }
+        else {
+            cypher *base = new Visionera("klucz");
+            base->decryption(mess);
+        }
+    }
+
+
     if(receive_f < 0){
         std::printf("There is a problem in receive_data: %d \n", WSAGetLastError());
     }

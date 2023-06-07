@@ -19,9 +19,11 @@ void Visionera::encryption(char *mess) {
         key += key;
     }
    for(int i = 0; i < size; i++){
-       if(mess[i] <= 'z' and mess[i] >= 'a'){
-           std::cout<<'z' - 'a';
-           mess[i] = ((mess[i]-97) + (key[i]-97))%27 + 97;}
+       if(mess[i] <= 'z' and mess[i] >= 'a')
+           mess[i] = ((mess[i]-97) + (key[i]-97))%27 + 97;
+       else if (mess[i] <= 'Z' and mess[i] >= 'A')
+           mess[i] = ((mess[i]-65) + (key[i]-65))%26 + 65;
+
    }
 }
 
@@ -33,15 +35,25 @@ void Visionera::decryption(char *mess) {
     }
     for(int i = 0; i < size; i++){
         if(mess[i] <= 'z' and mess[i] >= 'a'){
-            std::cout<< "I:" << (mess[i]-97) - (key[i]-97) << std::endl;
-            std::cout<< "II:" << ((mess[i]-97) - (key[i]-97))%27 << std::endl;
             if (((mess[i]-97) - (key[i]-97))%27 < 0)
                 mess[i] = ((mess[i]-97) - (key[i]-97))%27 + 27 + 97;
             else
                 mess[i] = ((mess[i]-97) - (key[i]-97))%27 + 97;
-
         }
-
+        else if(mess[i] <= 'Z' and mess[i] >= 'A') {
+            if (((mess[i] - 65) - (key[i] - 65)) % 27 < 0) {
+                std::cout << ((mess[i] - 65) - (key[i] - 65) + 1) % 26 + 26 + 64 << std::endl;
+                mess[i] = ((mess[i] - 65) - (key[i] - 65) + 1) % 26 + 26 + 64;
+                std::cout << mess[i] <<std::endl;
+            }
+            else {
+                std::cout << ((mess[i] - 65) - (key[i] - 65) + 1) % 26 + 64 << std::endl;
+                mess[i] = ((mess[i] - 65) - (key[i] - 65) + 1) % 26 + 64;
+                std::cout << mess[i] <<std::endl;
+            }
+            if (mess[i] == '@')
+                mess[i] = 'Z';
+        }
     }
 }
 

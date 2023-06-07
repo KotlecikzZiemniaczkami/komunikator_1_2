@@ -18,16 +18,9 @@ public:
     Gui();
     void clearing();
     void show_friends();
-
     void wait_and_receive();
-
     void add_user();
-
-//is adding user being polite to user
-// is showing list of all friends
-void delete_friend();
-    //is deleting some frined
-    //is letting to listen and receiving data
+    void delete_friend();
 };
 
 
