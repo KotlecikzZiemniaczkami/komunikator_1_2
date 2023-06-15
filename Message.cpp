@@ -10,19 +10,14 @@ Message::Message():User() {
 //?
 void Message::connect_to_server(char& ip) {
     sockaddr_in clientService;
-    std::cout<<"Im in: " << &ip<<std::endl;
     clientService.sin_family = AF_INET;
     clientService.sin_port = htons(port);
     clientService.sin_addr.s_addr = inet_addr(&ip);
-    std::cout << "Im still in" << std::endl;
     memset(&clientService.sin_zero, 0, 8);
     if (connect(userSocket, (SOCKADDR*)&clientService, sizeof(clientService)) == SOCKET_ERROR)
     {
         std::cout<<"Client: connect() - Failed to connect " << std::endl;
         WSACleanup();
-    }
-    else{
-        std::cout << "client connect is ok" << std::endl;
     }
 }
 
@@ -62,7 +57,7 @@ void Message::send_data() {
 }
 
 void Message::making_con() {
-    std::cout << "podaj nick: ";
+    std::cout << "write nick: ";
     std::cin >> person.nick;
     person.get_ip();
     char fake_ip[person.ip.length()+1];

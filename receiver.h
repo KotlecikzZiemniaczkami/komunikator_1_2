@@ -6,9 +6,6 @@
 #define KOMUNIKATOR_1_2_RECEIVER_H
 #include "User.h"
 #include <string>
-#include "cypher.h"
-#include "Visionera.h"
-#include "cesar.h"
 
 class receiver :public User {
     long long acceptSocket;

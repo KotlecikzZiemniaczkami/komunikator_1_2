@@ -15,7 +15,7 @@ void receiver::receive_data() {
         int i = 0;
         while (mess[i] !='\0')
             i += 1;
-        mess[i-1] = enc;
+        enc = mess[i-1];
         if(enc == '1') {
             cypher *base = new cesar(3);
             base->decryption(mess);

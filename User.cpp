@@ -18,9 +18,6 @@ void User::initialize_wsa() {
     if(wsaError != 0){
         std::cout << "The Winsock dll not found!" << std::endl;
     }
-    else{
-        std::cout << "The Winsock dll found!" << std::endl;
-    }
 }
 
 void User::create_socket() {
@@ -28,8 +25,5 @@ void User::create_socket() {
     if (userSocket == INVALID_SOCKET){
         std::cout << "socket() has failed: " << WSAGetLastError() << std::endl;
         WSACleanup();
-    }
-    else{
-        std::cout << "socket() is cool" << std::endl;
     }
 }

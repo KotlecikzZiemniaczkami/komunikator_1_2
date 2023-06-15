@@ -4,6 +4,7 @@
 using namespace std;
 
 int main() {
+
     Gui start;
     Message mess;
     cout << "HELLO IN FUTURISTIC COMUNICATOR 1.2 :D" << endl;

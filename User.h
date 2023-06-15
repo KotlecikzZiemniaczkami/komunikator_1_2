@@ -7,6 +7,9 @@
 #include <winsock2.h>
 #include <iostream>
 #include <ws2tcpip.h>
+#include "cypher.h"
+#include "Visionera.h"
+#include "cesar.h"
 
 class User {
 protected:

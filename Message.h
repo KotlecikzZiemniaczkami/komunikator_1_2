@@ -6,9 +6,6 @@
 #define KOMUNIKATOR_1_2_MESSAGE_H
 #include "User.h"
 #include "TxtFile.h"
-#include "cypher.h"
-#include "Visionera.h"
-#include "cesar.h"
 
 class Message :public User{
     TxtFile person;
