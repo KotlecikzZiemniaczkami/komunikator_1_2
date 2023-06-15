@@ -1,16 +1,21 @@
 #include "Gui.h"
 #include "Message.h"
-
 using namespace std;
 
-int main() {
 
+//heart of the program
+int main() {
+    //Gui start controls local procedures
     Gui start;
+    //message controls procedures of sending
     Message mess;
+    //welcome message
     cout << "HELLO IN FUTURISTIC COMUNICATOR 1.2 :D" << endl;
+    //main menu
     while (true) {
         int choice;
         std::cout << "MENU\n1.Send Message\n2.Wait for the Message\n3.See a list of Your friends\n4.Add a friend\n5.Delete a friend\n6.Quit" << std::endl;
+        //place taking a choice from user without mark on cmd
         choice = _getwch();
         switch(choice){
             case 49:
@@ -29,21 +34,11 @@ int main() {
             case 53:
                 start.delete_friend();
                 break;
+            //abort function is killing programme
             case 54:
                 std::abort();
         }
+        //screen is clearing in nice way
         start.clearing();
     }
-    return 0;
-    /*
-    cypher *base = new Visionera("klu");
-    char messa[200];
-    cin.getline(messa, 200);
-    base->encryption(messa);
-    cout << messa << endl;
-    base->decryption(messa);
-    cout << messa << endl;
-    char s;
-    cin>>s;
-     */
 }

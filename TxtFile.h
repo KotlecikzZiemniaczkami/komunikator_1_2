@@ -9,6 +9,7 @@
 #include <iostream>
 #include <string>
 
+//TxtFile is a class to control database
 
 class TxtFile {
 public:

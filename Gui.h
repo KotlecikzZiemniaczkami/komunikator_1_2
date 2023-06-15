@@ -9,18 +9,20 @@
 #include <conio.h>
 #include "receiver.h"
 
-
-class Gui:public TxtFile{ //public Message
+//Gui is a class to control processes on local computer
+class Gui:public TxtFile{
+    //control is to make code much shorter. It helps to inform user
+    //about database status
     int control;
     void getting_ip_and_nick_from_user(); //is getting an ip and nick from user
     int guard(); //exist only to test if ip is correct
 public:
     Gui();
-    void clearing();
-    void show_friends();
-    void wait_and_receive();
-    void add_user();
-    void delete_friend();
+    void clearing();//clears gui
+    void show_friends();//is showing list of friends
+    void wait_and_receive();//is making a server job
+    void add_user(); //is adding user
+    void delete_friend();//is deleting address from base
 };
 
 

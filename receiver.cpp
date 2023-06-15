@@ -8,38 +8,54 @@
 void receiver::receive_data() {
     //making a space in memory for the message
     char mess[200] = "";
+    // int will count not empty places in mess
+    int i = 0;
     //receiving and saving data through socket
     int receive_f = recv(acceptSocket, mess, 200,0);
-    if(receive_f >= 0){/////////////////////////////////////////////////////////////////////////important
+    if(receive_f >= 0){
+        //enc takes an info from message which cypher was used
+        //this information is at the end of message
         char enc;
-        int i = 0;
+        //finding the information of cypher used
         while (mess[i] !='\0')
             i += 1;
         enc = mess[i-1];
+        //decrypting
         if(enc == '1') {
             cypher *base = new cesar(3);
             base->decryption(mess);
         }
         else {
-            cypher *base = new Visionera("klucz");
+            cypher *base = new Visionera("ababa");
             base->decryption(mess);
         }
     }
 
 
     if(receive_f < 0){
+        //if receiving fails there is a comunicat shown about where fail was
         std::printf("There is a problem in receive_data: %d \n", WSAGetLastError());
     }
-    else
-        std::printf("Received message: %s \n", mess);
+    else{
+        //there is showing received message if everything is ok
+        std::cout << "Received message:";
+        for(int w = 0; w < i-1; w++){
+            std::cout<< mess[w];
+        }
+        std::cout<<std::endl;
+    }
+
 }
 
 
 //this method is responsible for "binding" a socket
 void receiver::bind_socket() {
+    //in sockaddr_in is every single information about receiver
     sockaddr_in receiverbs; //here an Ip addres lives
+    //AF_INET is responsible for the family of adresses (in this situation ipv4)
     receiverbs.sin_family = AF_INET;
     receiverbs.sin_port = htons(port);
+    //INADDR_ANY  binds the socket to all available interfaces.
     receiverbs.sin_addr.s_addr = INADDR_ANY;
     memset(&(receiverbs.sin_zero), 0, 8);
     //nearly every socket function is returning an int, if everything is correct it is 0
@@ -48,9 +64,6 @@ void receiver::bind_socket() {
         //if method does not work properly it is important to delete socket
         WSACleanup();
     }
-    else{
-        std::cout << "bind is working!" << std::endl;
-    }
 }
 
 //this method is starting listening on a socket
@@ -58,20 +71,22 @@ void receiver::listen_on_socket() {
     //1. argument is a socket on witch listening is being conducted, 2. argument is for how many users listen is "waiting"
     if (listen(userSocket, 1) == SOCKET_ERROR)
         std::cout << "we are deaf. There is a failure on Listen " << WSAGetLastError() << std::endl;
-    else
-        std::cout << "with listen everything is fine. Let's hunt" << std::endl;
 }
 
+
+//this method accepts connection when any shows up
 void receiver::accept_connection() {
     if(agreement == 1) {
         int nlen = sizeof(sockaddr);
+        //is accepting connection
         acceptSocket = accept(userSocket, NULL, &nlen);
         if (acceptSocket == INVALID_SOCKET) {
+            //shows error code
             std::cout << "accept failed: " << WSAGetLastError() << std::endl;
             WSACleanup();
         }
         else {
-            std::cout << "sssss! I am hunting a bunny!" << std::endl;
+            //sends feedback to sender that everything is ok
             send(acceptSocket, "Got the connection", 255, 0);
         }
     }
@@ -83,7 +98,7 @@ receiver::receiver():User() {
     acceptSocket = INVALID_SOCKET;
 }
 
-//this method is only to have a view how situation looks on a port
+//this method is only to have a view how is situation on a port
 //it is showing in real time if somebody wants to connect and for what purpose
 void receiver::selection() {
     int select_helping;
@@ -91,14 +106,17 @@ void receiver::selection() {
     timeval tv;
     tv.tv_sec = 1;
     tv.tv_usec = 0;
+    //reading, writing, exception (sth failed)
     fd_set fr, fw, fe;
     nMax = userSocket +1;
+    //while loop checks if somebody is on a port adn on what purpose
     while(true) {
         FD_ZERO(&fr);
         FD_ZERO(&fw);
         FD_ZERO(&fe);
         FD_SET(userSocket, &fr);
         FD_SET(userSocket, &fe);
+        //actualising information about situation on a port
         select_helping = select(nMax, &fr, &fw, &fe, &tv);
         if (select_helping == 0)
             std::cout << "nothing on a port" << std::endl;
@@ -122,14 +140,3 @@ void receiver::selection() {
         Sleep(2000);
     }
 }
-
-/*void receiver::wait_and_receive() {
-        initialize_wsa();
-        create_socket();
-        bind_socket();
-        listen_on_socket();
-        selection();
-        accept_connection();
-        receive_data();
-        WSACleanup();
-}*/

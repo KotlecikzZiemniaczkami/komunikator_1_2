@@ -77,8 +77,10 @@ void TxtFile::all_content() {
     std::string word;
     std::fstream file;
     file.open("base.txt", std::ios::in);
+    //file.good() checks if everything in import of txt file is ok
     if(!file.good())
         return;
+    //shows only nick in nice way (with actual numeration)
     while(getline(file, word)){
         if(i%2 == 0) {
             std::cout << num << '.' << word << std::endl;
