@@ -7,13 +7,19 @@
 #include "cypher.h"
 #include "iostream"
 
+//this is a cypher to encrypt message (one of 2. First one is cesar)
+//it "moves" character by position which has a character with the same index in key
 class Visionera:public cypher {
+    //it is a key to encryption and decryption
     std::string key;
-public:
+    //int count counts signs in m[]
     int count(char m[200]);
-    void encryption(char mess[200]);
-    void decryption(char mess[200]);
+public:
     Visionera(std::string k);
+    //void encryption encrypts the message (mess)
+    void encryption(char mess[200]);
+    //void decryption decrypts the message (mess)
+    void decryption(char mess[200]);
 };
 
 
