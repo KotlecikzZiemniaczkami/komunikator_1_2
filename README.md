@@ -13,14 +13,14 @@ This project has following features:
 3. All communication is deleted immediately after reading
 4. Project is made in easy-to-use blocks so it is easy to redo or implement to other, bigger code
 
-## Fumctions
+## Functions
 This project is a chat application, enabeling communication in local network. It was made for Windows operating system, and it has following functions:
-*sending messeges using Windows sockets
-*receiving messeges using Windows sockets
-*adding addresses to database
-*deleting addresses from database
-*showing the list of "friends" from database
-*encrypting and decrypting messeges
+1. sending messeges using Windows sockets
+2. receiving messeges using Windows sockets
+3. adding addresses to database
+4. deleting addresses from database
+5. showing the list of "friends" from database
+6. encrypting and decrypting messeges
 
 ## Why Windows sockets?
 The main reason is I wanted to make something fun which will be used for as many people as possible and Windows is the most popular system.
