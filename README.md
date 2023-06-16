@@ -12,5 +12,6 @@ This project is a chat application, enabeling communication in local network. It
 *encrypting and decrypting messeges
 
 ## diagrams
-*
+### class diagram
+
 
