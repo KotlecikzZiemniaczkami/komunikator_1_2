@@ -12,7 +12,7 @@
 #include "cesar.h"
 
 
-// it is a class responsible for start of communication
+// It is a class responsible for start of communication
 class User {
 protected:
     //socket error number
