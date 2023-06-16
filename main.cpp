@@ -1,5 +1,6 @@
 #include "Gui.h"
 #include "Message.h"
+#include "receiver.h"
 using namespace std;
 
 
@@ -9,6 +10,8 @@ int main() {
     Gui start;
     //message controls procedures of sending
     Message mess;
+    //receiver is to control messeges receiving
+    receiver rec;
     //welcome message
     cout << "HELLO IN FUTURISTIC COMUNICATOR 1.2 :D" << endl;
     //main menu
@@ -23,7 +26,7 @@ int main() {
                 mess.tsend();
                 break;
             case 50:
-                start.wait_and_receive();
+                rec.sum();
                 break;
             case 51:
                 start.show_friends();

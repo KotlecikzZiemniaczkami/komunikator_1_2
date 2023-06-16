@@ -140,3 +140,15 @@ void receiver::selection() {
         Sleep(2000);
     }
 }
+
+//summarization made to easier implementation
+void receiver::sum() {
+    initialize_wsa();
+    create_socket();
+    bind_socket();
+    listen_on_socket();
+    selection();
+    accept_connection();
+    receive_data();
+    WSACleanup();
+}

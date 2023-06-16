@@ -95,17 +95,6 @@ void Gui::delete_friend() {
     delete_data();
 }
 
-//data receivering procedure
-void Gui::wait_and_receive() {
-    receiver rec1;
-    rec1.initialize_wsa();
-    rec1.create_socket();
-    rec1.bind_socket();
-    rec1.listen_on_socket();
-    rec1.selection();
-    rec1.accept_connection();
-    rec1.receive_data();
-    WSACleanup();
-}
+
 
 

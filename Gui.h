@@ -20,7 +20,6 @@ public:
     Gui();
     void clearing();//clears gui
     void show_friends();//is showing list of friends
-    void wait_and_receive();//is making a server job
     void add_user(); //is adding user
     void delete_friend();//is deleting address from base
 };
