@@ -13,7 +13,9 @@
 
 class TxtFile {
 public:
+    //ipv4 address
     std::string ip;
+    //nickname of user
     std::string nick;
     TxtFile(); //just a constructor
     void get_ip();//is getting an ip based on a nick

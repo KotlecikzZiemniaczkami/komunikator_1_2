@@ -7,7 +7,7 @@
 #include "TxtFile.h"
 #include <regex>
 #include <conio.h>
-#include "receiver.h"
+
 
 //Gui is a class to control processes on local computer
 class Gui:public TxtFile{

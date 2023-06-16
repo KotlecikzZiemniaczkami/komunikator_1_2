@@ -14,4 +14,3 @@ This project is a chat application, enabeling communication in local network. It
 ## diagrams
 ### class diagram
 
-

@@ -77,13 +77,21 @@ void Message::send_data() {
         printf("we have just send %d bytes Sir\n", officialSender);
 }
 
+//this method is to make connection
+//unlike to connect to server it interacts with user
+//by asking him/her for giving a nickname of receiver from base
 void Message::making_con() {
+    //here is inquiry addressed to a user about nickname of receiver
     std::cout << "write nick: ";
     std::cin >> person.nick;
+    //when nickname is known, program by the get_ip() gets ip
+    //address from database
     person.get_ip();
+    //string is redone to char list
     char fake_ip[person.ip.length()+1];
     strcpy(fake_ip, person.ip.c_str());
     std::cout<<person.ip<<std::endl;
+    //there is initializing connection to server
     connect_to_server(*fake_ip);
 }
 
