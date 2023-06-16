@@ -1,9 +1,8 @@
 # komunikator_1_2
 
 ## A fully functional LAN chat
-I made this project, because I really wanted to learn socket programming and make an chat application
-which will not collect any user's private information (the list of friends is an exception, but their nicknames
-dependes only on user and is being kept only on user's computer) and working in p2p system.
+I made this project, because I really wanted to learn socket programming and make a chat application
+which will not collect any user's private information and will work in p2p system.
 I hope, You will learn something or use it to something cool too.
 
 ## Features
@@ -24,7 +23,7 @@ This project is a chat application, enabeling communication in local network. It
 
 ## Why Windows sockets?
 The main reason is I wanted to make something fun which will be used for as many people as possible and Windows is the most popular system.
-I also used a sockets because this technology is amazing, and really suits to simple LAN communicator as komunikator_1_2.
+I also used sockets because this technology is truly amazing, and really suits to a simple LAN communicator as the komunikator_1_2.
 
 ## diagrams
 ### class diagram
@@ -33,7 +32,7 @@ I also used a sockets because this technology is amazing, and really suits to si
 ![image](https://github.com/KotlecikzZiemniaczkami/komunikator_1_2/assets/127383477/8d1d334e-50fc-4e26-afeb-d245a94c3742)
 
 ## How to run this project
-This project is made for the Windows operating system and it should not work on any other.
+This project is made for the Windows operating system and it should not be run on any other.
 There is no version of this project in .exe on the internet at the moment when the file is being created, so here comes instructions
 how to compile it on Clion:
 1. Clone this project
@@ -48,6 +47,15 @@ If You open this project on the Windows operating system there should be no prob
 
 ## If You find a bug
 please, contact me by email: debickidamian@o2.pl
+
+## Use instructions
+Project is made in console, so to select anything You need to select it on a keyboard. Programme shows exact instructions up to date, but there is
+needed to read instructions cerfully (some functions are made non-standard, like when You choose who to send message, You need to write his accurately his nickname)
+if anything in communication goes wrong, programme will show the error number. In some cases (like when You send the message) programme is carrying on, but
+it should be like that. if you encounter such a situation, You should carry on until You will return to main menu.
+
+## Author
+Damian Dębicki
 
 
 
