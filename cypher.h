@@ -12,7 +12,7 @@
 class cypher {
 public:
     //encryption and decryption are methods which mandatory for
-    //a new cypher class
+    //a new cypher class/
     virtual void encryption(char mess[200]) = 0;
     virtual void decryption(char mess[200]) = 0;
 
